@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, Text, View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Header from '../components/Header';
 import { useEffect, useState } from 'react';
 import List from '../components/List';
+import Categories from '../components/categories';
+import Products from '../components/products';
 
 export default function HomeScreen() {
   const [products, setProducts] = useState([])
@@ -27,10 +29,15 @@ export default function HomeScreen() {
   }, [])
 
   return (
-    <View className="">
-      <Header product={products[6]} />
-      <List />
-      <StatusBar style="dark" />
-    </View>
+    <ScrollView>
+      <View className='mb-10'>
+        <Header product={products[6]} />
+        <List />
+        <Categories />
+        <Products />
+        <StatusBar style="dark" />
+      </View>
+    </ScrollView>
+    
   );
 }
