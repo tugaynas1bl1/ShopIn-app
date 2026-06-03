@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import List from '../components/List';
 import Categories from '../components/categories';
 import Products from '../components/products';
+import StyledView from '../components/StyledView';
 
 export default function HomeScreen() {
   const [products, setProducts] = useState([])
@@ -30,13 +31,15 @@ export default function HomeScreen() {
 
   return (
     <ScrollView>
-      <View className='mb-10'>
-        <Header product={products[6]} />
-        <List />
-        <Categories />
-        <Products />
-        <StatusBar style="dark" />
-      </View>
+      <StyledView>
+        <View className='mb-10'>
+          <Header product={products[6]} />
+          <List />
+          <Categories />
+          <Products />
+          <StatusBar style="dark" />
+        </View>
+      </StyledView>
     </ScrollView>
     
   );

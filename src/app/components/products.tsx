@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import List from './List'
+import StyledText from './StyledText';
 
 const Products = () => {
 
@@ -28,7 +29,7 @@ const Products = () => {
   return (
     <View className='w-full mt-10 gap-5'>
       <View className='flex-row justify-between px-12'>
-        <Text className='text-2xl font-bold'>New Arrivals</Text>
+        <StyledText className='text-2xl font-bold'>New Arrivals</StyledText>
         <TouchableOpacity className='bg-[#8b4fff] p-3 rounded-xl'>
             <Text className='text-white font-medium'>View All</Text>
         </TouchableOpacity>

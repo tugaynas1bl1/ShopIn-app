@@ -2,10 +2,18 @@ import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { View, Text, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
+import StyledText from "./StyledText";
 
 const ProductCard = ({product}: any) => {
+    const router = useRouter()
     return (
-        <View className="w-45 mr-6 px-4">
+        <TouchableOpacity 
+        onPress={() => router.push({
+            pathname: "/productDetails/[id]",
+            params: { id: product.id }
+        })}  
+        className="w-45 mr-6 px-4">
             <TouchableOpacity className="self-end">
                 <Ionicons color={'gray'} size={25} name='heart-outline'/>
             </TouchableOpacity>
@@ -13,17 +21,17 @@ const ProductCard = ({product}: any) => {
                 source={{ uri: product.thumbnail }}
                 style={{ width: 150, height: 150}}>
             </Image>
-            <Text numberOfLines={1}>{product?.title}</Text>
-            <Text className="text-[12px] text-gray-500 pl-3 py-3">Category: {product.category}</Text>
+            <StyledText numberOfLines={1}>{product?.title}</StyledText>
+            <StyledText className="text-[12px] text-gray-500 pl-3 py-3">Category: {product.category}</StyledText>
             <View className="flex-row justify-between items-center">
-                <Text className="font-semibold text-[15px]">${product.price}</Text>
+                <StyledText className="font-semibold text-[15px]">${product.price}</StyledText>
     
                 <TouchableOpacity>
-                    <Text className="text-[24px] text-gray-500">+</Text>
+                    <StyledText className="text-[24px] text-gray-500">+</StyledText>
                 </TouchableOpacity>
             </View>
             
-        </View>
+        </TouchableOpacity>
     )
 }
 
