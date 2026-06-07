@@ -1,11 +1,14 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { Text, View } from "react-native";
 import { useMMKVBoolean } from "react-native-mmkv";
 import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
 
 const Layout = () => {
   const [darkmode, setDarkmode] = useMMKVBoolean('darkmode')
+
+
   return (
     
     <Stack>

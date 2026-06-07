@@ -3,10 +3,13 @@ import { useState } from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller'
 import { useMMKVString } from 'react-native-mmkv'
+import { login
+
+ } from '@/api/auth'
+
 
 const Login = () => {
 
-    const [accessToken, setAccessToken] = useMMKVString('accessToken')
     const router = useRouter()
 
     const [formData, setFormData] = useState({
@@ -18,27 +21,6 @@ const Login = () => {
         username: '',
         password: ''
     })
-
-    const login = async () => {
-        try {
-            const res = await fetch('https://dummyjson.com/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-
-            if (res.ok){
-                 const data = await res.json()
-                setAccessToken(data.accessToken)
-                router.push('/(tabs)')
-            }
-           
-        } catch (error) {
-            console.log('ERROR:', error)
-        }
-    }
 
     const handleLogin = async () => {
         const newErrors = {
@@ -60,7 +42,13 @@ const Login = () => {
             return
         }
 
-        await login()
+        try {
+            await login(formData)
+            router.replace('/(tabs)/profile')
+        } catch (error) {
+            console.error(error)
+            alert('Username və ya password yanlışdır')
+        }
     }
 
     return (
@@ -69,7 +57,7 @@ const Login = () => {
             bottomOffset={16}
             keyboardShouldPersistTaps="handled"
         >
-            <View className="bg-white rounded-[32px] p-6 gap-6 border border-zinc-100 shadow-sm">
+            <View className="bg-white rounded-4xl p-6 gap-6 border border-zinc-100 shadow-sm">
 
                 <View className="items-center gap-2 mb-2">
                     <View className="size-20 rounded-full bg-[#8b4fff] items-center justify-center">
